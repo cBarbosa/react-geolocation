@@ -28,29 +28,33 @@ const App = () => {
     // }
 
     useEffect(()=> {
+	    
+	setStatus('Localizando...');
 
-        (async function() {
-            if (!navigator.geolocation) {
-                setStatus('Geolocation is not supported by your browser');
-            } else {
-                setStatus('Localizando...');
-                navigator.geolocation.getCurrentPosition((position) => {
-                    setStatus(null);
-                    setLat(position.coords.latitude);
-                    setLng(position.coords.longitude);
-                }, () => {
-                    setStatus('Unable to retrieve your location');
-                });
-            }
-        })();
+        //(async function() {
+        //    if (!navigator.geolocation) {
+        //        setStatus('Geolocation is not supported by your browser');
+        //    } else {
+        //        setStatus('Localizando...');
+        //        navigator.geolocation.getCurrentPosition((position) => {
+        //            setStatus(null);
+        //            setLat(position.coords.latitude);
+        //            setLng(position.coords.longitude);
+        //        }, () => {
+        //            setStatus('Unable to retrieve your location');
+        //        });
+        //    }
+        //})();
 
         (async function() {
             fetch(API + DEFAULT_QUERY)
                 .then(response => {
                 if (response.ok) {
+		    setStatus(null);
                     return response.json();
                 } else {
-                    throw new Error('Something went wrong ...');
+                    //throw new Error('Something went wrong ...');
+		    setStatus('USomething went wrong ...');
                 }
                 })
                 .then(data => {
@@ -59,8 +63,11 @@ const App = () => {
                     setCountry(data.country_name);
                     setCity(data.city);
                     setState(data.state);
+		    setLat(data.latitude);
+                    setLng(data.longitude);
+		    setStatus(null);
                 })
-                .catch(error => console.debug('Get IP', error));
+                .catch(error => setStatus('Unable to retrieve your location'););
             }
         )();
         
