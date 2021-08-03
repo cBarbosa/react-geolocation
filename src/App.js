@@ -67,7 +67,7 @@ const App = () => {
                     setLng(data.longitude);
 		    setStatus(null);
                 })
-                .catch(error => setStatus('Unable to retrieve your location'););
+                .catch(error => setStatus('Unable to retrieve your location'));
             }
         )();
         
