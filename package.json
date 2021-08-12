@@ -15,6 +15,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "PORT=3006 react-scripts build",
+    "react-scripts": "^2.0.4",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "PORT=36898 react-scripts start",
+    "build": "PORT=36898 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
