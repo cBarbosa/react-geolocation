@@ -7,18 +7,20 @@ export function Reporte01() {
 
     useEffect(()=> {
 
+        const fetchReport = async()=>{
+            const response = db.collection('pcdf-geo');
+            const data = await response.get();
+            data.docs.forEach( item => {
+                console.log(item.data());
+                setLista([...lista, item.data()])
+            })
+        }
+
         fetchReport();
 
-    }, []);
+    }, [lista]);
 
-    const fetchReport = async()=>{
-        const response = db.collection('pcdf-geo');
-        const data = await response.get();
-        data.docs.forEach( item => {
-            console.log(item.data());
-            setLista([...lista, item.data()])
-        })
-    }
+    
 
 	return (
         <div>
