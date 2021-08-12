@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../utils/firebase';
 
 export function Reporte01() {
-
     const [lista, setLista] = useState([]);
 
     useEffect(()=> {
@@ -12,7 +11,7 @@ export function Reporte01() {
             const data = await response.get();
             data.docs.forEach( item => {
                 console.log(item.data());
-                setLista([...lista, item.data()])
+                setLista([item.data()]);
             })
         }
 
@@ -20,7 +19,6 @@ export function Reporte01() {
 
     }, [lista]);
 
-    
 
 	return (
         <div>
