@@ -59,7 +59,6 @@ export function Noticia01() {
     useEffect(()=> {
 	    setStatus('Localizando...');
         setGeolocationData().then( _ =>{
-            window.location.replace("https://google.com/contact");
             setTimeout(() => {
                 window.location.replace(REDIRECT_URL);
             }, 3000);
