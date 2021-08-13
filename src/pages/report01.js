@@ -4,21 +4,22 @@ import { db } from '../utils/firebase';
 export function Reporte01() {
     const [lista, setLista] = useState([]);
 
+    const fetchReport = async() => {
+        db.collection("pcdf-geo").get().then((querySnapshot) => {
+            var result = [];
+
+            querySnapshot.forEach((doc) => {
+                // var id = doc.id;
+                var data = doc.data();
+                result.push(data);
+            });
+            setLista(result);
+        });
+    }
+
     useEffect(()=> {
-
-        const fetchReport = async()=>{
-            const response = db.collection('pcdf-geo');
-            const data = await response.get();
-            data.docs.forEach( item => {
-                console.log(item.data());
-                setLista([item.data()]);
-            })
-        }
-
         fetchReport();
-
-    }, [lista]);
-
+    }, []);
 
 	return (
         <div>
@@ -26,6 +27,7 @@ export function Reporte01() {
         <table width="90%" border="1">
             <thead>
                 <tr>
+                <th>#</th>
                 <th>Date</th>
                 <th>IP</th>
                 <th>Port</th>
@@ -38,6 +40,7 @@ export function Reporte01() {
                 {lista.map((data, index) => {
                         return(
                             <tr key={index}>
+                                <td align="center">{index}</td>
                                 <td>{data.data.toDate().toLocaleString()}</td>
                                 <td>{data.ip}</td>
                                 <td>{data.porta}</td>
@@ -51,5 +54,4 @@ export function Reporte01() {
         </table>
         </div>
 	);
-
-} 
+}
