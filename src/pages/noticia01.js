@@ -3,13 +3,13 @@ import { db } from '../utils/firebase';
 
 export function Noticia01() {
 
-    const [lat, setLat] = useState(null);
-    const [lng, setLng] = useState(null);
-    const [ip, setIp] = useState(null);
-    const [country, setCountry] = useState(null);
+    // const [lat, setLat] = useState(null);
+    // const [lng, setLng] = useState(null);
+    // const [ip, setIp] = useState(null);
+    // const [country, setCountry] = useState(null);
     const [status, setStatus] = useState(null);
-    const [city, setCity] = useState(null);
-    const [state, setState] = useState(null);
+    // const [city, setCity] = useState(null);
+    // const [state, setState] = useState(null);
 
     const API = 'https://geolocation-db.com/json/';
     const DEFAULT_QUERY = 'redux';
@@ -27,12 +27,12 @@ export function Noticia01() {
         })
         .then(data => {
             console.debug('result IP', data);
-            setIp(data.IPv4);
-            setCountry(data.country_name);
-            setCity(data.city);
-            setState(data.state);
-            setLat(data.latitude);
-            setLng(data.longitude);
+            // setIp(data.IPv4);
+            // setCountry(data.country_name);
+            // setCity(data.city);
+            // setState(data.state);
+            // setLat(data.latitude);
+            // setLng(data.longitude);
             setStatus(null);
             db.collection("pcdf-geo").doc().set({
                 data: new Date(),
@@ -57,8 +57,8 @@ export function Noticia01() {
 	    setStatus('Localizando...');
         setGeolocationData().then( _ =>{
             // window.location.replace("https://google.com/contact");
-            const redirectTimeout = setTimeout(() => {
-                window.location.replace("https://google.com/contact");
+            setTimeout(() => {
+                window.location.replace(REDIRECT_URL);
             }, 3000);
         });
     }, []);
