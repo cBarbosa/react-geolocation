@@ -5,12 +5,13 @@ export function Reporte01() {
     const [lista, setLista] = useState([]);
 
     const fetchReport = async() => {
-        db.collection("pcdf-geo").get().then((querySnapshot) => {
+        db.collection("pcdf-geo").orderBy("data", "desc").get().then((querySnapshot) => {
             var result = [];
 
             querySnapshot.forEach((doc) => {
                 // var id = doc.id;
                 var data = doc.data();
+                data.id = doc.id;
                 result.push(data);
             });
             setLista(result);
@@ -27,7 +28,7 @@ export function Reporte01() {
         <table width="90%" border="1">
             <thead>
                 <tr>
-                <th>#</th>
+                <th>#-ID</th>
                 <th>Date</th>
                 <th>IP</th>
                 <th>Port</th>
@@ -41,7 +42,7 @@ export function Reporte01() {
                 {lista.map((data, index) => {
                         return(
                             <tr key={data.id}>
-                                <td align="center">{index}</td>
+                                <td>{index}-{data.id}</td>
                                 <td>{data.data.toDate().toLocaleString()}</td>
                                 <td>{data.ip}</td>
                                 <td>{data.porta}</td>
