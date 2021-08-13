@@ -48,7 +48,7 @@ export function Reporte01() {
                                 <td>{data.latitude}</td>
                                 <td>{data.longitude}</td>
                                 <td>{data.cidade}/{data.estado}</td>
-                                <td>{data.device?.userAgent}</td>
+                                <td>{data.device?.userAgent}{data.device?.ua}</td>
                             </tr>
                         );
                 })}
