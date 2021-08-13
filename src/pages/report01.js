@@ -34,12 +34,13 @@ export function Reporte01() {
                 <th>Lat</th>
                 <th>Lng</th>
                 <th>Location</th>
+                <th>UserAgent</th>
                 </tr>
             </thead>
             <tbody>
                 {lista.map((data, index) => {
                         return(
-                            <tr key={index}>
+                            <tr key={data.id}>
                                 <td align="center">{index}</td>
                                 <td>{data.data.toDate().toLocaleString()}</td>
                                 <td>{data.ip}</td>
@@ -47,6 +48,7 @@ export function Reporte01() {
                                 <td>{data.latitude}</td>
                                 <td>{data.longitude}</td>
                                 <td>{data.cidade}/{data.estado}</td>
+                                <td>{data.device?.userAgent}</td>
                             </tr>
                         );
                 })}
